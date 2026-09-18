@@ -15,15 +15,15 @@ export const SITE = {
 export const ADSENSE = {
   /**
    * 수동 광고 단위(slot) ID. 애드센스 콘솔 > 광고 > 광고 단위 기준 > 디스플레이 광고 만들기 → data-ad-slot 숫자.
-   * 0 으로만 된 값은 자리표시자로 취급되어 해당 자리를 숨긴다. 자동 광고는 이 값과 무관하게 index.html 의 스크립트로 동작한다.
+   * 빈 문자열이면 해당 자리를 숨긴다. 자동 광고는 이 값과 무관하게 index.html 의 스크립트로 동작한다.
    */
   slots: {
     /** 화면 하단 가로 배너 (반응형) */
-    bottom: '0000000001',
+    bottom: '',
     /** 결과 창 안의 사각형 광고 */
-    result: '0000000002',
+    result: '',
     /** 사용법 창 하단 */
-    guide: '0000000003',
+    guide: '',
   },
   /** 개발 중 광고 자리를 점선 박스로 보여주려면 URL 에 ?adpreview=1 을 붙인다 */
   previewParam: 'adpreview',

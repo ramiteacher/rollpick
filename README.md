@@ -45,7 +45,7 @@ npm run build:root # 루트 도메인에 올릴 때
 | `public/ads.txt` | `google.com, pub-…, DIRECT, f08c47fec0942fa0` |
 | `src/config.ts` | `ADSENSE.slots` 에 광고 단위 ID 3개 (`bottom`, `result`, `guide`) |
 
-슬롯 ID가 자리표시자(0으로만 된 값)여도 스크립트는 로드된다. 광고 단위를 만들면 `src/config.ts` 의 슬롯 ID를 채운다.
+자동 광고는 모든 페이지 head 의 `adsbygoogle.js?client=…` 스크립트로 동작한다(애드센스 콘솔에서 사이트 자동 광고 ON 필요). 수동 슬롯 3곳은 `src/config.ts` 의 슬롯 ID가 비어 있으면 숨겨지고, 광고 단위를 만들어 ID를 넣으면 나타난다.
 레이아웃만 확인하려면 `?adpreview=1` 을 붙이면 점선 박스로 자리가 보입니다.
 
 애드센스 정책상 광고는 콘텐츠와 구분되어야 하고(각 슬롯에 "광고" 라벨 있음), 클릭을 유도하는 문구를 넣으면 안 됩니다.
