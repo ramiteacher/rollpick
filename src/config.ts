@@ -19,7 +19,7 @@ export const ADSENSE = {
    */
   slots: {
     /** 화면 하단 가로 배너 (반응형) */
-    bottom: '',
+    bottom: '9047808825',
     /** 결과 창 안의 사각형 광고 */
     result: '',
     /** 사용법 창 하단 */
