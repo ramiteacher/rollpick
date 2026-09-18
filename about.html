@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RollPick 소개 - 구슬 추첨기의 작동 원리와 공정성, 만든 사람</title>
+  <meta name="description" content="RollPick은 Box2D 물리 엔진으로 구슬을 굴려 당첨자를 뽑는 오픈소스 랜덤 추첨기입니다. 결과가 정해지는 원리, 서버 없이 동작하는 구조, 개발 배경과 라이선스, 문의 방법을 정리했습니다.">
+  <link rel="canonical" href="https://ramiteacher.github.io/rollpick/about.html">
+  <meta name="google-adsense-account" content="ca-pub-3238568174687829">
+  <meta name="naver-site-verification" content="aa9e0ae4469eadc69b954e2690cdfc50290d56e9">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:site_name" content="RollPick">
+  <meta property="og:url" content="https://ramiteacher.github.io/rollpick/about.html">
+  <meta property="og:title" content="RollPick 소개 - 작동 원리와 공정성">
+  <meta property="og:description" content="Box2D 물리 엔진으로 구슬을 굴려 당첨자를 뽑는 오픈소스 추첨기.">
+  <meta property="og:image" content="https://ramiteacher.github.io/rollpick/assets/icons/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <meta name="theme-color" content="#0b0d12">
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0Q2MEWWEN"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-X0Q2MEWWEN');</script>
+  <link rel="stylesheet" href="assets/style.scss">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://ramiteacher.github.io/rollpick/about.html",
+        "url": "https://ramiteacher.github.io/rollpick/about.html",
+        "name": "RollPick 소개",
+        "inLanguage": "ko",
+        "isPartOf": { "@id": "https://ramiteacher.github.io/rollpick/#website" },
+        "about": { "@id": "https://ramiteacher.github.io/rollpick/#app" },
+        "datePublished": "2026-09-18",
+        "dateModified": "2026-09-18"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "RollPick", "item": "https://ramiteacher.github.io/rollpick/" },
+          { "@type": "ListItem", "position": 2, "name": "소개", "item": "https://ramiteacher.github.io/rollpick/about.html" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="page">
+<header class="topbar">
+  <a class="brand" href="./">
+    <span class="logo" aria-hidden="true"></span>
+    <span class="brand-name">RollPick</span>
+  </a>
+  <nav class="page-nav" aria-label="RollPick 안내">
+    <a href="guide.html">사용법</a>
+    <a href="pinball.html">핀볼 뽑기</a>
+    <a href="classroom.html">수업 활용</a>
+    <a href="stream.html">방송·이벤트</a>
+    <a href="about.html" aria-current="page">소개</a>
+  </nav>
+</header>
+
+<main class="page-body prose">
+  <nav class="breadcrumb" aria-label="현재 위치"><a href="./">RollPick</a> › 소개</nav>
+  <h1>RollPick 소개 <small>작동 원리와 공정성</small></h1>
+  <p class="lead"><strong>RollPick(롤픽)은 물리 엔진으로 구슬을 굴려 당첨자를 뽑는 무료 오픈소스 랜덤 추첨기입니다.</strong> 핀볼 뽑기, 구슬 뽑기, 마블 레이스 추첨이라고도 불리는 방식으로, 서버 없이 브라우저 안에서만 동작합니다.</p>
+
+  <h2>한눈에 보기</h2>
+  <table>
+    <tbody>
+      <tr><th>이름</th><td>RollPick (한글 표기: 롤픽)</td></tr>
+      <tr><th>주소</th><td><a href="https://ramiteacher.github.io/rollpick/">https://ramiteacher.github.io/rollpick/</a></td></tr>
+      <tr><th>공개일</th><td>2026-09-18 (버전 1.0.0)</td></tr>
+      <tr><th>가격</th><td>무료, 회원가입 없음, 광고 게재</td></tr>
+      <tr><th>물리 엔진</th><td>Box2D (box2d-wasm 7.x)</td></tr>
+      <tr><th>실행 환경</th><td>최신 Chrome·Edge·Safari·Firefox, 모바일 브라우저, PWA 설치 가능</td></tr>
+      <tr><th>언어</th><td>한국어, English, 日本語</td></tr>
+      <tr><th>소스 코드</th><td><a href="https://github.com/ramiteacher/rollpick" rel="noopener">github.com/ramiteacher/rollpick</a> (MIT 라이선스)</td></tr>
+      <tr><th>원작</th><td><a href="https://github.com/lazygyu/roulette" rel="noopener">lazygyu/roulette</a> (MIT) 를 포크해 UI와 기능을 다시 만든 프로젝트</td></tr>
+    </tbody>
+  </table>
+
+  <h2>결과가 정해지는 원리</h2>
+  <ol>
+    <li><strong>출발 순서 섞기</strong>: 시작 버튼을 누를 때마다 구슬의 출발 위치가 무작위(Fisher-Yates 셔플)로 다시 정해집니다.</li>
+    <li><strong>물리 시뮬레이션</strong>: 그 뒤의 움직임은 Box2D 엔진이 10ms 간격으로 중력·충돌·마찰을 계산합니다. 사람이 개입할 수 있는 값이 없습니다.</li>
+    <li><strong>골인 판정</strong>: 맵의 골인선을 넘은 순서가 곧 순위입니다. 1등·꼴찌·등수·범위 중 어떤 방식을 골랐든 이 순위에서 당첨자를 읽습니다.</li>
+    <li><strong>교착 방지</strong>: 구슬이 5초 이상 멈추면 작은 힘을 무작위 방향으로 주어 다시 움직이게 합니다. 이 힘도 무작위라 특정 구슬에 유리하지 않습니다.</li>
+  </ol>
+  <p>스킬(순간 가속) 옵션을 켜면 구슬마다 쿨타임이 돌고 확률적으로 가속이 발동합니다. 이름 뒤 <code>/숫자</code>로 준 무게가 클수록 발동 확률이 높아지므로, 완전한 균등 확률이 필요하면 스킬을 끄면 됩니다.</p>
+
+  <h2>서버가 없다는 것의 의미</h2>
+  <ul>
+    <li>입력한 이름, 설정, 추첨 기록은 이용자 브라우저의 로컬 저장소에만 있습니다. 운영자도 볼 수 없습니다.</li>
+    <li>결과를 서버에서 받아오지 않으므로 "서버가 미리 정한 당첨자"가 존재할 수 없습니다.</li>
+    <li>한 번 페이지를 열면 네트워크가 끊겨도 추첨은 계속 됩니다(광고만 표시되지 않습니다).</li>
+  </ul>
+
+  <h2>만든 사람과 배경</h2>
+  <p>RollPick은 수업에서 발표자와 조를 정할 때 학생들이 결과를 납득하는 도구가 필요해 만들었습니다. 원작인 lazygyu의 roulette(마블 룰렛)이 MIT 라이선스로 공개되어 있어 이를 바탕으로 화면과 기능을 다시 구성했고, "Marble Roulette / 마블 룰렛"은 원작자의 상표이므로 이 프로젝트는 RollPick이라는 별도 이름을 씁니다. 운영자는 GitHub 계정 <a href="https://github.com/ramiteacher" rel="noopener">ramiteacher</a>입니다.</p>
+
+  <h2>문의</h2>
+  <p>버그 신고, 기능 제안, 개인정보 관련 문의는 <a href="https://github.com/ramiteacher/rollpick/issues" rel="noopener">GitHub 이슈</a>로 남겨 주세요. 광고와 쿠키에 대한 안내는 <a href="privacy.html">개인정보처리방침</a>에 있습니다.</p>
+
+  <p><a class="btn primary cta" href="./">RollPick 바로 시작하기 →</a></p>
+  <p class="muted">관련 페이지: <a href="guide.html">사용법</a> · <a href="pinball.html">핀볼 뽑기</a> · <a href="classroom.html">수업 활용</a> · <a href="stream.html">방송·이벤트</a></p>
+</main>
+
+<footer class="footer static">
+  <span>&copy; 2026 RollPick</span>
+  <a href="privacy.html">개인정보처리방침</a>
+  <a href="https://github.com/ramiteacher/rollpick" target="_blank" rel="noopener">GitHub</a>
+</footer>
+</body>
+</html>

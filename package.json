@@ -17,10 +17,11 @@
   "scripts": {
     "lint": "biome check --fix src/",
     "typecheck": "tsc --noEmit",
-    "dev": "parcel index.html privacy.html --port 1236",
-    "build": "parcel build index.html privacy.html --public-url /rollpick/ --no-source-maps --no-cache && node scripts/postbuild.js",
-    "build:root": "parcel build index.html privacy.html --public-url / --no-source-maps --no-cache && node scripts/postbuild.js",
-    "smoke": "node scripts/smoke.mjs"
+    "dev": "parcel index.html privacy.html guide.html pinball.html classroom.html stream.html about.html --port 1236",
+    "build": "parcel build index.html privacy.html guide.html pinball.html classroom.html stream.html about.html --public-url /rollpick/ --no-source-maps --no-cache && node scripts/postbuild.js",
+    "build:root": "parcel build index.html privacy.html guide.html pinball.html classroom.html stream.html about.html --public-url / --no-source-maps --no-cache && node scripts/postbuild.js",
+    "smoke": "node scripts/smoke.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "box2d-wasm": "^7.0.0"

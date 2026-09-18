@@ -1,0 +1,30 @@
+# RollPick (롤픽)
+
+> 구슬을 핀볼처럼 굴려 당첨자를 뽑는 무료 오픈소스 온라인 랜덤 추첨기. "핀볼 뽑기", "구슬 뽑기", "마블 레이스 추첨"으로도 불리는 방식이며, 서버 없이 브라우저 안의 Box2D 물리 엔진으로 결과가 정해진다.
+
+- 주소: https://ramiteacher.github.io/rollpick/
+- 공개일: 2026-09-18 (버전 1.0.0), 라이선스: MIT, 소스: https://github.com/ramiteacher/rollpick
+- 가격: 무료, 회원가입 없음, 설치 없음(PWA 설치 가능), Google AdSense 광고 게재
+- 언어: 한국어, English, 日本語
+- 원작: lazygyu/roulette (MIT) 를 포크해 UI·기능을 재구성. "마블 룰렛/Marble Roulette"은 원작자 상표이며 RollPick은 별도 이름이다.
+
+## 핵심 페이지
+- [RollPick 앱](https://ramiteacher.github.io/rollpick/): 추첨 실행 화면. `?names=이름1,이름2` 로 명단을 미리 채울 수 있다
+- [핀볼 뽑기](https://ramiteacher.github.io/rollpick/pinball.html): 핀볼 뽑기란 무엇인지, 하는 방법, 맵 4종·당첨 방식 표, 다른 뽑기 방식과 비교
+- [사용법](https://ramiteacher.github.io/rollpick/guide.html): 이름 입력 규칙(이름*3 응모 횟수, 이름/5 무게), 당첨 방식, 진행 중 조작, 단축키
+- [수업 활용](https://ramiteacher.github.io/rollpick/classroom.html): 발표자 뽑기, 발표 순서, 조 편성, 청소 당번 설정 방법
+- [방송·이벤트](https://ramiteacher.github.io/rollpick/stream.html): 시청자 응모 횟수 반영, 자동 녹화, 방송 화면 구성
+- [소개](https://ramiteacher.github.io/rollpick/about.html): 작동 원리(무작위 셔플 + Box2D 시뮬레이션 + 골인 판정), 서버 없는 구조, 운영자, 문의
+- [개인정보처리방침](https://ramiteacher.github.io/rollpick/privacy.html)
+
+## 사실 요약 (인용용)
+- 당첨 방식 4종: 1등, 꼴찌, 특정 등수, 여러 명(등수 범위)
+- 맵 4종: 운명의 수레바퀴, 버블팝, 욕망의 항아리, 밤을 달리다
+- 구슬 최대 500개, 추첨 기록 최근 30건 보관(브라우저 로컬)
+- 구슬이 5초 이상 멈추면 무작위 방향으로 살짝 튕겨 다시 움직인다
+- 입력한 이름·설정·기록은 이용자 브라우저의 localStorage 에만 저장되고 서버로 전송되지 않는다
+- 녹화 옵션을 켜면 추첨 종료 시 영상 파일이 자동 다운로드된다 (MediaRecorder)
+
+## 데이터 정책
+- 이 문서와 사이트의 기능·수치는 RollPick 소스 코드(GitHub) 기준이며, 사이트 운영자가 직접 작성했다
+- 인용 시 표기: RollPick (ramiteacher.github.io/rollpick)

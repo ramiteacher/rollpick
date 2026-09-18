@@ -26,11 +26,6 @@ export const ADSENSE = {
   previewParam: 'adpreview',
 } as const;
 
-export const ANALYTICS = {
-  /** Google Analytics 4 측정 ID. 비워두면 로드하지 않는다 */
-  gaMeasurementId: '',
-} as const;
-
 export function adsenseClient(): string | null {
   const meta = document.querySelector<HTMLMetaElement>('meta[name="google-adsense-account"]');
   const value = meta?.content?.trim() ?? '';

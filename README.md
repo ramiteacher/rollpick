@@ -26,9 +26,18 @@ npm run build      # dist/  (public-url /rollpick/)
 npm run build:root # 루트 도메인에 올릴 때
 ```
 
+## SEO / AI 검색 최적화
+
+- 의도별 정적 랜딩: `pinball.html`(핀볼 뽑기) · `guide.html`(사용법) · `classroom.html`(수업) · `stream.html`(방송·이벤트) · `about.html`(소개). 전부 JS 없이 읽히는 HTML이고 FAQPage·BreadcrumbList JSON-LD는 가시 텍스트와 동일하다.
+- `index.html`: h1, Organization/WebSite/WebApplication/FAQPage 그래프, 사용법 다이얼로그 본문을 정적으로 포함.
+- `public/`: `robots.txt`(검색·AI 크롤러 허용), `sitemap.xml`(lastmod), `llms.txt`, IndexNow 키 파일. 빌드 시 `dist/` 로 복사된다.
+- 배포 후 `npm run indexnow` 로 사이트맵 URL 전부를 Bing·네이버 계열에 핑한다 (키는 `.indexnow-key`).
+- 새 페이지를 만들면: `package.json` build 엔트리 + `sitemap.xml` + `llms.txt` 세 곳에 추가한다.
+- 등록이 필요한 도구: Google Search Console, Bing Webmaster Tools, 네이버 서치어드바이저 (루트 `ramiteacher.github.io` 등록이 있으면 하위 경로도 포함).
+
 ## 애드센스 설정
 
-게시자 ID를 발급받은 뒤 아래 세 곳의 `ca-pub-0000000000000000` / `pub-0000000000000000` 을 바꿉니다.
+게시자 ID(`ca-pub-3238568174687829`)는 아래 세 곳에 들어 있다. 바꿔야 하면 세 곳을 함께 바꾼다.
 
 | 파일 | 내용 |
 | --- | --- |
@@ -36,7 +45,7 @@ npm run build:root # 루트 도메인에 올릴 때
 | `public/ads.txt` | `google.com, pub-…, DIRECT, f08c47fec0942fa0` |
 | `src/config.ts` | `ADSENSE.slots` 에 광고 단위 ID 3개 (`bottom`, `result`, `guide`) |
 
-ID가 자리표시자(0으로만 된 값)인 동안은 광고 영역이 통째로 숨겨집니다.
+슬롯 ID가 자리표시자(0으로만 된 값)여도 스크립트는 로드된다. 광고 단위를 만들면 `src/config.ts` 의 슬롯 ID를 채운다.
 레이아웃만 확인하려면 `?adpreview=1` 을 붙이면 점선 박스로 자리가 보입니다.
 
 애드센스 정책상 광고는 콘텐츠와 구분되어야 하고(각 슬롯에 "광고" 라벨 있음), 클릭을 유도하는 문구를 넣으면 안 됩니다.

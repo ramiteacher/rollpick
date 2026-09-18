@@ -1,4 +1,3 @@
-import { ANALYTICS } from './config';
 import { initLocale } from './localization';
 import { Roulette } from './roulette';
 import { AdManager } from './ui/ads';
@@ -24,21 +23,6 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', boot);
 } else {
   boot();
-}
-
-if (ANALYTICS.gaMeasurementId) {
-  const id = ANALYTICS.gaMeasurementId;
-  const s = document.createElement('script');
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
-  document.head.appendChild(s);
-  const w = window as unknown as { dataLayer: unknown[] };
-  w.dataLayer = w.dataLayer || [];
-  function gtag(...args: unknown[]) {
-    w.dataLayer.push(args);
-  }
-  gtag('js', new Date());
-  gtag('config', id);
 }
 
 // 디버깅용

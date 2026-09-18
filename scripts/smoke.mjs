@@ -78,6 +78,11 @@ await page.screenshot({ path: `${out}/09-desktop-adpreview.png` });
 
 await page.goto(`${base}privacy.html`, { waitUntil: 'networkidle0' });
 await page.screenshot({ path: `${out}/10-privacy.png` });
+await page.goto(`${base}pinball.html`, { waitUntil: 'networkidle0' });
+await page.screenshot({ path: `${out}/11-pinball.png` });
+await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+await page.goto(`${base}guide.html`, { waitUntil: 'networkidle0' });
+await page.screenshot({ path: `${out}/12-guide-mobile.png` });
 
 await browser.close();
 if (errors.length) {

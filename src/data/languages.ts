@@ -4,7 +4,7 @@
  */
 const ko = {
   appName: 'RollPick',
-  tagline: '구슬을 굴려 뽑는 랜덤 추첨기',
+  tagline: '핀볼처럼 구슬을 굴려 뽑는 랜덤 추첨기',
   enterNames: '이름을 입력하세요',
   namesPlaceholder: '이름을 쉼표나 줄바꿈으로 구분해서 입력하세요\n예) 사과, 바나나*3, 체리/5',
   marblesCount: '구슬 {n}개',
