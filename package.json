@@ -1,0 +1,28 @@
+{
+  "name": "rollpick",
+  "version": "1.0.0",
+  "description": "RollPick - 구슬을 굴려 당첨자를 뽑는 물리 기반 랜덤 추첨기",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@biomejs/biome": "2.4.4",
+    "@parcel/packager-raw-url": "^2.16.4",
+    "@parcel/transformer-jsonld": "^2.16.4",
+    "@parcel/transformer-sass": "^2.16.4",
+    "@parcel/transformer-webmanifest": "^2.16.4",
+    "parcel": "^2.16.4",
+    "puppeteer-core": "^25.11.0",
+    "typescript": "^5.6.3"
+  },
+  "scripts": {
+    "lint": "biome check --fix src/",
+    "typecheck": "tsc --noEmit",
+    "dev": "parcel index.html privacy.html --port 1236",
+    "build": "parcel build index.html privacy.html --public-url /rollpick/ --no-source-maps --no-cache && node scripts/postbuild.js",
+    "build:root": "parcel build index.html privacy.html --public-url / --no-source-maps --no-cache && node scripts/postbuild.js",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "dependencies": {
+    "box2d-wasm": "^7.0.0"
+  }
+}

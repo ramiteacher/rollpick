@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RollPick - 구슬 굴리기 랜덤 추첨기 | Marble Race Picker</title>
+  <meta name="description" content="RollPick은 구슬을 굴려 당첨자를 뽑는 물리 기반 무료 랜덤 추첨기입니다. 이름을 입력하고 시작만 누르면 됩니다. 수업, 방송, 이벤트 어디서나 사용하세요.">
+  <meta name="keywords" content="랜덤 추첨기, 구슬 추첨, 마블 레이스, 당첨자 뽑기, random picker, marble race, name picker">
+  <link rel="canonical" href="https://ramiteacher.github.io/rollpick/">
+
+  <!-- Google AdSense: 게시자 ID 를 여기 한 곳에서만 바꾼다 (ads.txt 도 함께) -->
+  <meta name="google-adsense-account" content="ca-pub-0000000000000000">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ramiteacher.github.io/rollpick/">
+  <meta property="og:title" content="RollPick - 구슬 굴리기 랜덤 추첨기">
+  <meta property="og:description" content="구슬을 굴려 당첨자를 뽑는 물리 기반 무료 랜덤 추첨기">
+  <meta property="og:image" content="https://ramiteacher.github.io/rollpick/assets/icons/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="assets/manifest.json">
+  <meta name="theme-color" content="#0b0d12">
+
+  <link rel="stylesheet" href="assets/style.scss">
+  <script type="module" src="./src/index.ts"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "RollPick",
+    "url": "https://ramiteacher.github.io/rollpick/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "description": "구슬을 굴려 당첨자를 뽑는 물리 기반 무료 랜덤 추첨기",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" }
+  }
+  </script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="./">
+    <span class="logo" aria-hidden="true"></span>
+    <span class="brand-name">RollPick</span>
+    <span class="brand-tag" data-i18n="tagline">구슬을 굴려 뽑는 랜덤 추첨기</span>
+  </a>
+  <nav class="topnav">
+    <button id="btnGuide" class="icon-btn" data-i18n-title="guide" data-i18n-aria-label="guide">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 15.5a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zM13 13v.5h-2V12c0-1.1.9-1.5 1.6-1.9.6-.4 1-.7 1-1.3a1.6 1.6 0 0 0-3.2 0H8.4a3.6 3.6 0 1 1 7.2 0c0 1.5-1 2.2-1.8 2.7-.6.4-.8.6-.8 1.5z"/></svg>
+    </button>
+    <button id="btnHistory" class="icon-btn" data-i18n-title="history" data-i18n-aria-label="history">
+      <svg viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.9 3.9L9 12H6a7 7 0 1 1 2.1 5l-1.4 1.4A9 9 0 1 0 13 3zm-1 5v5l4.3 2.5.7-1.2-3.5-2.1V8z"/></svg>
+    </button>
+    <select id="selLang" class="lang" data-i18n-title="language" data-i18n-aria-label="language"></select>
+    <button id="btnTheme" class="icon-btn theme-btn" data-i18n-title="theme" data-i18n-aria-label="theme">
+      <svg class="sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5h0l1 3h-2l1-3zm0 20l-1-3h2l-1 3zM2 12l3-1v2l-3-1zm20 0l-3 1v-2l3 1zM4.9 4.9l2.8 1.4-1.4 1.4L4.9 4.9zm14.2 14.2l-2.8-1.4 1.4-1.4 1.4 2.8zM4.9 19.1l1.4-2.8 1.4 1.4-2.8 1.4zM19.1 4.9l-1.4 2.8-1.4-1.4 2.8-1.4z"/></svg>
+      <svg class="moon" viewBox="0 0 24 24"><path d="M12.3 2a9.9 9.9 0 0 0-1.9.2 8 8 0 0 0 9.4 11.5A10 10 0 1 1 12.3 2z"/></svg>
+    </button>
+    <button id="btnFullscreen" class="icon-btn" data-i18n-title="fullscreen" data-i18n-aria-label="fullscreen">
+      <svg viewBox="0 0 24 24"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="stage" aria-label="RollPick"></main>
+
+<div id="hud" class="hud" aria-live="polite">
+  <span class="pulse" aria-hidden="true"></span>
+  <span id="hudText"></span>
+  <span id="hudHint" class="hint"></span>
+  <button id="btnStop" class="btn ghost small" data-i18n="stop">중단</button>
+</div>
+
+<aside id="settings" class="settings panel">
+  <section class="names">
+    <div class="names-head">
+      <h2 data-i18n="enterNames">이름을 입력하세요</h2>
+      <span id="nameCount" class="badge">구슬 0개</span>
+    </div>
+    <textarea id="in_names" rows="5" spellcheck="false" autocomplete="off"
+              data-i18n-placeholder="namesPlaceholder"></textarea>
+    <div class="names-tools">
+      <button id="btnExample" class="btn ghost small" data-i18n="example">예시</button>
+      <button id="btnSort" class="btn ghost small" data-i18n="sort">정렬</button>
+      <button id="btnClear" class="btn ghost small" data-i18n="clear">지우기</button>
+      <span class="sep"></span>
+      <button id="btnCopyLink" class="btn ghost small" data-i18n="copyLink">링크 복사</button>
+    </div>
+    <div class="actions">
+      <button id="btnShuffle" class="btn secondary">
+        <i class="icon shuffle"></i>
+        <span data-i18n="shuffle">섞기</span>
+      </button>
+      <button id="btnStart" class="btn primary">
+        <i class="icon play"></i>
+        <span data-i18n="start">시작</span>
+        <kbd>Ctrl+↵</kbd>
+      </button>
+    </div>
+  </section>
+
+  <section class="options">
+    <button id="btnToggleSettings" class="toggle-settings" aria-expanded="false" aria-controls="collapsible">
+      <i class="icon gear"></i>
+      <span data-i18n="settings">설정</span>
+      <span class="chev" aria-hidden="true"></span>
+    </button>
+    <div id="collapsible" class="collapsible collapsed">
+      <div class="row">
+        <label for="sltMap"><i class="icon map"></i><span data-i18n="map">맵</span></label>
+        <select id="sltMap"></select>
+      </div>
+      <div class="row toggles">
+        <label class="switch">
+          <input type="checkbox" id="chkSkills" checked>
+          <span class="track"></span>
+          <i class="icon bomb"></i><span data-i18n="skills">스킬</span>
+        </label>
+        <label class="switch">
+          <input type="checkbox" id="chkRecording">
+          <span class="track"></span>
+          <i class="icon record"></i><span data-i18n="recording">녹화</span>
+        </label>
+      </div>
+      <div class="row">
+        <label><i class="icon trophy"></i><span data-i18n="winnerIs">당첨</span></label>
+        <div class="segment" role="group">
+          <button type="button" data-winner="first" class="active" data-i18n="first">1등</button>
+          <button type="button" data-winner="last" data-i18n="last">꼴찌</button>
+          <div class="seg-input">
+            <input type="number" id="in_rank" value="1" min="1" inputmode="numeric" data-i18n-title="rank">
+            <span class="suffix" data-i18n="rank">등수</span>
+          </div>
+          <button type="button" data-winner="multi" data-i18n="multiple">여러 명</button>
+        </div>
+      </div>
+      <div id="rangeRow" class="row range">
+        <label></label>
+        <div class="range-inputs">
+          <input type="number" id="in_rangeStart" value="1" min="1" inputmode="numeric">
+          <span class="range-sep">~</span>
+          <input type="number" id="in_rangeEnd" value="3" min="1" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+  </section>
+</aside>
+
+<div id="adBottom" class="ad-strip">
+  <span class="ad-label" data-i18n="adLabel">광고</span>
+  <ins class="adsbygoogle" style="display:block" data-ad-slot-key="bottom" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+</div>
+
+<dialog id="resultDialog" class="dialog result">
+  <div class="dialog-head">
+    <h2 id="resultTitle">당첨자</h2>
+    <button class="icon-btn" data-close data-i18n-aria-label="close">✕</button>
+  </div>
+  <ul id="resultList" class="winner-list"></ul>
+  <div class="dialog-actions">
+    <button id="btnCopyResult" class="btn secondary" data-i18n="copy">복사</button>
+    <button id="btnShareResult" class="btn secondary" data-i18n="share">공유</button>
+    <button id="btnAgain" class="btn primary" data-i18n="again">다시 뽑기</button>
+  </div>
+  <details id="rankingDetails" class="ranking">
+    <summary data-i18n="ranking">전체 순위</summary>
+    <ol id="resultRanking" class="ranking-list"></ol>
+  </details>
+  <div class="ad-box">
+    <span class="ad-label" data-i18n="adLabel">광고</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-slot-key="result" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
+  </div>
+</dialog>
+
+<dialog id="guideDialog" class="dialog guide">
+  <div class="dialog-head">
+    <h2 data-i18n="guideTitle">RollPick 사용법</h2>
+    <button class="icon-btn" data-close data-i18n-aria-label="close">✕</button>
+  </div>
+  <div id="guideBody" class="dialog-body prose"></div>
+  <div class="ad-box">
+    <span class="ad-label" data-i18n="adLabel">광고</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-slot-key="guide" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  </div>
+  <p class="credit"><span data-i18n="credit">Marble Roulette(lazygyu, MIT) 기반</span> · <a href="privacy.html" data-i18n="privacy">개인정보처리방침</a></p>
+</dialog>
+
+<dialog id="historyDialog" class="dialog history">
+  <div class="dialog-head">
+    <h2 data-i18n="results">추첨 기록</h2>
+    <button class="icon-btn" data-close data-i18n-aria-label="close">✕</button>
+  </div>
+  <div id="historyList" class="dialog-body history-list"></div>
+  <div class="dialog-actions">
+    <button id="btnClearHistory" class="btn ghost" data-i18n="clearHistory">기록 지우기</button>
+  </div>
+</dialog>
+
+<footer class="footer">
+  <span>&copy; 2026 RollPick</span>
+  <a href="privacy.html" data-i18n="privacy">개인정보처리방침</a>
+  <a href="https://github.com/ramiteacher/rollpick" target="_blank" rel="noopener">GitHub</a>
+</footer>
+</body>
+</html>
