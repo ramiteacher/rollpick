@@ -49,7 +49,7 @@ function readOptions(): PersistedOptions {
     skills: true,
     recording: false,
     theme: 'dark',
-    winner: { type: 'first', rank: 1, start: 1, end: 3 },
+    winner: { type: 'last', rank: 1, start: 1, end: 3 },
     collapsed: true,
   };
   try {

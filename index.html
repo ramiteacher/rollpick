@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>RollPick - 핀볼 뽑기·구슬 굴리기 무료 랜덤 추첨기</title>
-  <meta name="description" content="이름을 넣고 시작만 누르면 구슬이 핀볼처럼 떨어지며 당첨자를 뽑는 무료 온라인 랜덤 추첨기. 1등·꼴찌·여러 명 추첨, 녹화, 공유 링크 지원. 수업·방송·이벤트에서 설치 없이 바로 사용하세요.">
+  <meta name="description" content="이름을 넣고 시작만 누르면 구슬이 핀볼처럼 떨어지며 당첨자를 뽑는 무료 온라인 랜덤 추첨기. 1등·마지막·여러 명 추첨, 녹화, 공유 링크 지원. 수업·방송·이벤트에서 설치 없이 바로 사용하세요.">
   <meta name="keywords" content="핀볼뽑기, 핀볼 뽑기, 핀볼 추첨기, 랜덤 추첨기, 구슬 추첨, 구슬 뽑기, 마블 레이스, 당첨자 뽑기, 발표자 뽑기, random picker, marble race, name picker">
   <link rel="canonical" href="https://ramiteacher.github.io/rollpick/">
 
@@ -67,7 +67,7 @@
         "browserRequirements": "Requires JavaScript and WebAssembly",
         "inLanguage": ["ko", "en", "ja"],
         "description": "이름을 넣고 시작만 누르면 구슬이 핀볼처럼 떨어지며 당첨자를 뽑는 무료 온라인 랜덤 추첨기",
-        "featureList": ["1등·꼴찌·등수·여러 명 당첨 방식", "핀볼 맵 4종", "추첨 영상 자동 녹화", "당첨자 복사·공유", "추첨 기록 30건", "명단 공유 링크", "다크·라이트 테마", "한국어·영어·일본어"],
+        "featureList": ["1등·마지막·등수·여러 명 당첨 방식", "핀볼 맵 4종", "추첨 영상 자동 녹화", "당첨자 복사·공유", "추첨 기록 30건", "명단 공유 링크", "다크·라이트 테마", "한국어·영어·일본어"],
         "isAccessibleForFree": true,
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
         "datePublished": "2026-09-18",
@@ -176,8 +176,8 @@
       <div class="row">
         <label><i class="icon trophy"></i><span data-i18n="winnerIs">당첨</span></label>
         <div class="segment" role="group">
-          <button type="button" data-winner="first" class="active" data-i18n="first">1등</button>
-          <button type="button" data-winner="last" data-i18n="last">꼴찌</button>
+          <button type="button" data-winner="first" data-i18n="first">1등</button>
+          <button type="button" data-winner="last" class="active" data-i18n="last">마지막</button>
           <div class="seg-input">
             <input type="number" id="in_rank" value="1" min="1" inputmode="numeric" data-i18n-title="rank">
             <span class="suffix" data-i18n="rank">등수</span>
@@ -232,7 +232,7 @@
     <p class="lead">RollPick은 물리 엔진 위에서 구슬을 굴려 당첨자를 뽑는 랜덤 추첨기입니다. 결과는 미리 정해지지 않으며 구슬의 충돌과 낙하 과정으로 자연스럽게 결정됩니다.</p>
     <ol>
       <li>이름을 쉼표(,)나 줄바꿈으로 구분해 입력합니다.</li>
-      <li>맵과 당첨 방식(1등 / 꼴찌 / 특정 등수 / 여러 명)을 고릅니다.</li>
+      <li>맵과 당첨 방식(1등 / 마지막 / 특정 등수 / 여러 명)을 고릅니다.</li>
       <li>시작 버튼을 누르면 구슬이 떨어지며 추첨이 진행됩니다.</li>
       <li>결과 창에서 당첨자를 확인하고 복사·공유하거나 다시 뽑습니다.</li>
     </ol>
