@@ -81,6 +81,16 @@ export class AdManager {
     ins.dataset.mounted = '1';
     ins.setAttribute('data-ad-client', this.client);
     ins.setAttribute('data-ad-slot', slot);
+
+    // 좁은 화면에서 반응형 가로 배너는 390x390 같은 큰 사각형으로 채워진다.
+    // 하단 띠는 60px 뿐이므로 모바일에서는 320x50 고정 크기로 요청한다.
+    if (key === 'bottom' && window.innerWidth < 860) {
+      ins.removeAttribute('data-ad-format');
+      ins.setAttribute('data-full-width-responsive', 'false');
+      ins.style.display = 'inline-block';
+      ins.style.width = '320px';
+      ins.style.height = '50px';
+    }
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {

@@ -5,7 +5,7 @@ const browser = await puppeteer.launch({ headless: true, executablePath: 'C:/Pro
 for (const url of urls) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36');
-  await page.setViewport({ width: 1366, height: 900 });
+  const mobile = process.env.MOBILE === '1'; await page.setViewport(mobile ? { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 } : { width: 1366, height: 900 }); if (mobile) await page.setUserAgent('Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Mobile Safari/537.36');
   const log = [];
   page.on('response', async (r) => {
     const u = r.url();
