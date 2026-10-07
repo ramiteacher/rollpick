@@ -27,6 +27,7 @@ function isRealSlot(slot: string | undefined): slot is string {
 export class AdManager {
   private client: string | null;
   private preview: boolean;
+  private bottomObserver: ResizeObserver | null = null;
 
   constructor() {
     this.client = adsenseClient();
@@ -55,7 +56,25 @@ export class AdManager {
       }
     });
 
+    this.observeBottomSpace();
     this.mountVisible();
+  }
+
+  /** 광고 크기 자동 최적화로 높이가 바뀌어도 조작 영역과 겹치지 않는다. */
+  private observeBottomSpace() {
+    const strip = document.querySelector<HTMLElement>('#adBottom');
+    if (!strip || strip.hidden) return;
+    const reserve = () => {
+      const height = Math.ceil(strip.getBoundingClientRect().height);
+      document.documentElement.style.setProperty('--ad-h', `${height}px`);
+      this.mountVisible();
+    };
+    reserve();
+    if (typeof ResizeObserver !== 'undefined') {
+      this.bottomObserver?.disconnect();
+      this.bottomObserver = new ResizeObserver(reserve);
+      this.bottomObserver.observe(strip);
+    }
   }
 
   /** 페이지 로드 시 이미 보이는 슬롯 */
@@ -78,22 +97,21 @@ export class AdManager {
     const key = ins.dataset.adSlotKey as keyof typeof ADSENSE.slots;
     const slot = ADSENSE.slots[key];
     if (!isRealSlot(slot)) return;
-    ins.dataset.mounted = '1';
+    // CSS가 적용되기 전이나 닫힌 창 안에서는 요청하지 않는다.
+    if (ins.getBoundingClientRect().width === 0) return;
     ins.setAttribute('data-ad-client', this.client);
     ins.setAttribute('data-ad-slot', slot);
 
-    // 좁은 화면에서 반응형 가로 배너는 390x390 같은 큰 사각형으로 채워진다.
-    // 하단 띠는 60px 뿐이므로 모바일에서는 320x50 고정 크기로 요청한다.
-    if (key === 'bottom' && window.innerWidth < 860) {
+    // 크기는 index.html의 인라인 CSS에서 지정한다. 자동 포맷 매개변수와 섞지 않는다.
+    if (key === 'bottom') {
       ins.removeAttribute('data-ad-format');
-      ins.setAttribute('data-full-width-responsive', 'false');
-      ins.style.display = 'inline-block';
-      ins.style.width = '320px';
-      ins.style.height = '50px';
+      ins.removeAttribute('data-full-width-responsive');
     }
+    ins.dataset.mounted = '1';
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
+      delete ins.dataset.mounted;
       console.warn('[ads] push failed', e);
     }
   }

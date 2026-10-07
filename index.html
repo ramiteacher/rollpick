@@ -34,6 +34,11 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-X0Q2MEWWEN"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-X0Q2MEWWEN');</script>
   <link rel="stylesheet" href="assets/style.scss">
+  <!-- AdSense supports inline sizing rules for manually sized responsive units. -->
+  <style>
+    .RollPick_Bottom { width: 100%; max-width: 970px; height: 90px; }
+    @media (max-width: 860px) { .RollPick_Bottom { height: 50px; } }
+  </style>
   <script type="module" src="./src/index.ts"></script>
   <script type="application/ld+json">
   {
@@ -88,7 +93,7 @@
   }
   </script>
 </head>
-<body>
+<body class="rollpick-app google-anno-skip">
 <header class="topbar">
   <a class="brand" href="./">
     <span class="logo" aria-hidden="true"></span>
@@ -199,7 +204,7 @@
 
 <div id="adBottom" class="ad-strip">
   <span class="ad-label" data-i18n="adLabel">광고</span>
-  <ins class="adsbygoogle" style="display:block" data-ad-slot-key="bottom" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+  <ins class="adsbygoogle RollPick_Bottom" style="display:block" data-ad-slot-key="bottom"></ins>
 </div>
 
 <dialog id="resultDialog" class="dialog result">

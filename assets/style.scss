@@ -1,7 +1,8 @@
 // ───────────────────────── tokens ─────────────────────────
 :root {
   --topbar-h: 52px;
-  --ad-h: 0px;
+  --ad-min-h: 0px;
+  --ad-h: var(--ad-min-h);
 
   --bg: #0b0d12;
   --panel: rgba(20, 23, 31, 0.82);
@@ -36,7 +37,7 @@
 }
 
 :root.ads-on {
-  --ad-h: 100px;
+  --ad-min-h: 110px;
 }
 
 // ───────────────────────── base ─────────────────────────
@@ -63,6 +64,11 @@ body {
 
 body.page {
   overflow: auto;
+}
+
+body.rollpick-app {
+  display: flex;
+  flex-direction: column;
 }
 
 button,
@@ -698,26 +704,24 @@ a {
 // ───────────────────────── ads ─────────────────────────
 .ad-strip {
   display: none;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: var(--ad-h);
+  position: relative;
+  flex: 0 0 auto;
+  margin-top: auto;
+  width: 100%;
+  min-height: var(--ad-min-h);
   background: var(--panel-solid);
   border-top: 1px solid var(--panel-border);
   z-index: 30;
   align-items: center;
   justify-content: center;
-  padding: 4px 8px;
+  padding: 14px 0 4px;
 
   ins {
-    width: 100%;
-    max-width: 970px;
-    height: calc(var(--ad-h) - 10px);
+    flex-shrink: 0;
   }
 }
 
-:root.ads-on .ad-strip {
+:root.ads-on .ad-strip:not([hidden]) {
   display: flex;
 }
 
@@ -744,7 +748,7 @@ a {
   }
 }
 
-:root.ads-on .ad-box {
+:root.ads-on .ad-box:not([hidden]) {
   display: block;
 }
 
@@ -1144,7 +1148,7 @@ body.page .topbar {
 // ───────────────────────── responsive ─────────────────────────
 @media (max-width: 860px) {
   :root.ads-on {
-    --ad-h: 60px;
+    --ad-min-h: 70px;
   }
 
   .brand .brand-tag {
