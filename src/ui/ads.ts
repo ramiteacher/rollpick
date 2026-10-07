@@ -65,7 +65,9 @@ export class AdManager {
     const strip = document.querySelector<HTMLElement>('#adBottom');
     if (!strip || strip.hidden) return;
     const reserve = () => {
-      const height = Math.ceil(strip.getBoundingClientRect().height);
+      const rect = strip.getBoundingClientRect();
+      // 자동 앵커 광고가 body에 넣는 하단 여백도 함께 예약한다.
+      const height = Math.ceil(Math.max(rect.height, window.innerHeight - rect.top));
       document.documentElement.style.setProperty('--ad-h', `${height}px`);
       this.mountVisible();
     };
@@ -74,6 +76,7 @@ export class AdManager {
       this.bottomObserver?.disconnect();
       this.bottomObserver = new ResizeObserver(reserve);
       this.bottomObserver.observe(strip);
+      this.bottomObserver.observe(document.body);
     }
   }
 

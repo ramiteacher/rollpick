@@ -14,7 +14,9 @@ function fixture({ width = 320, resultSlot = '', failOnce = false } = {}) {
   const properties = new Map();
   const requests = [];
   const observers = [];
-  const strip = { hidden: false, height: 70, getBoundingClientRect() { return { height: this.height }; } };
+  const strip = { hidden: false, height: 70, anchorPadding: 0, getBoundingClientRect() {
+    return { height: this.height, top: 800 - this.height - this.anchorPadding };
+  } };
   const makeSlot = (key, inDialog) => ({
     dataset: { adSlotKey: key },
     attributes: new Map([['data-ad-format', 'horizontal'], ['data-full-width-responsive', 'true']]),
@@ -31,7 +33,7 @@ function fixture({ width = 320, resultSlot = '', failOnce = false } = {}) {
   const elements = [bottom, result, guide];
   const exports = {};
   let shouldFail = failOnce;
-  const window = { adsbygoogle: { push(value) {
+  const window = { innerHeight: 800, adsbygoogle: { push(value) {
     if (shouldFail) { shouldFail = false; throw new Error('temporary failure'); }
     requests.push(value);
   } } };
@@ -43,6 +45,7 @@ function fixture({ width = 320, resultSlot = '', failOnce = false } = {}) {
     }; },
     window,
     document: {
+      body: {},
       documentElement: { classList: { toggle() {} }, style: { setProperty(name, value) { properties.set(name, value); } } },
       querySelector(selector) { return selector === '#adBottom' ? strip : {}; },
       querySelectorAll() { return elements; },
@@ -94,6 +97,18 @@ test('zero-width ad is deferred until its container has laid out', () => {
   assert.equal(f.bottom.dataset.mounted, undefined);
   f.bottom.width = 320;
   f.observers[0].callback();
+  assert.equal(f.requests.length, 1);
+});
+
+test('automatic anchor padding is reserved along with the manual banner and released after collapse', () => {
+  const f = fixture();
+  f.manager.init();
+  f.strip.anchorPadding = 127;
+  f.observers[0].callback();
+  assert.equal(f.properties.get('--ad-h'), '197px');
+  f.strip.anchorPadding = 0;
+  f.observers[0].callback();
+  assert.equal(f.properties.get('--ad-h'), '70px');
   assert.equal(f.requests.length, 1);
 });
 
